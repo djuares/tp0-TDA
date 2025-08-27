@@ -12,11 +12,10 @@ def amigos_optimizado_solo_tiempo(MAX):
         for multiplo in range(numero * 2, MAX + 1, numero):
             sumas_divisores[multiplo] += numero
     
-    # Solo recorrer para forzar la búsqueda pero sin guardar resultados
     for numero1 in range(1, MAX + 1):
         numero2 = sumas_divisores[numero1]
         if numero2 <= MAX and numero2 != numero1 and sumas_divisores[numero2] == numero1:
-            pass  # No hacer nada, solo verificar
+            pass  
     
     t2 = time.time()
     return t2 - t1
@@ -70,7 +69,7 @@ def graficar_tiempos(tamanios, tiempos):
     
     plt.legend()
     plt.tight_layout()
-    plt.savefig('tiempos_amigos_optimizado.png', dpi=300)
+    plt.savefig('graficos/tiempos_amigos_optimizado.png', dpi=300)
     plt.show()
     print("Gráfico guardado como 'tiempos_amigos_optimizado.png'")
 

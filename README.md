@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 
-
-
-=======
 # Trabajo práctico 0 - Teoría de Algoritmos 2C 2025
 
 ## Alumna
@@ -19,5 +15,3 @@ python3 src/numeros_amigos_optimizado.py --max 100000
 ```
 
 
-
->>>>>>> e07840e (git)
