@@ -1,5 +1,6 @@
 import time
 import math
+import argparse
 
 def amigos_optimizado(MAX):
     t1 = time.time()
@@ -23,4 +24,9 @@ def amigos_optimizado(MAX):
     t2 = time.time()
     print(t2-t1)
 
-amigos_optimizado(100000)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Buscar números amigos hasta un valor máximo.")
+    parser.add_argument('--max', type=int, required=True, help='Valor máximo para buscar números amigos')
+    args = parser.parse_args()
+    
+    amigos_optimizado(args.max)
