@@ -1,0 +1,119 @@
+Las sumas de divisores propios para cada número son:
+
+    i: 215 - suma: 49
+
+    i: 216 - suma: 384
+
+    i: 217 - suma: 39
+
+    i: 218 - suma: 112
+
+    i: 219 - suma: 77
+
+    i: 220 - suma: 284
+
+    i: 221 - suma: 31
+
+    i: 222 - suma: 234
+
+    i: 223 - suma: 1
+
+    i: 224 - suma: 280
+
+    i: 225 - suma: 178
+
+Verificación para cada i si es parte de un par de números amigos, con s= suma:
+
+    Para i=215:
+
+        s = 49
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[49] = 8
+
+        ¿8 == 215? No → No son amigos
+
+    Para i=216:
+
+        s = 384
+
+        ¿s <= 225? No → Descartar
+
+    Para i=217:
+
+        s = 39
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[39] = 17
+
+        ¿17 == 217? No → No son amigos
+
+    Para i=218:
+
+        s = 112
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[112] = 136
+
+        ¿136 == 218? No → No son amigos
+
+    Para i=219:
+
+        s = 77
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[77] = 19
+
+        ¿19 == 219? No → No son amigos
+
+    Para i=220:
+
+        s = 284
+
+        ¿s <= 225? No → Descartar
+
+    Para i=221:
+
+        s = 31
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[31] = 1
+
+        ¿1 == 221? No → No son amigos
+
+    Para i=222:
+
+        s = 234
+
+        ¿s <= 225? No → Descartar
+
+    Para i=223:
+
+        s = 1
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[1] = 0
+
+        ¿0 == 223? No → No son amigos
+
+    Para i=224:
+
+        s = 280
+
+        ¿s <= 225? No → Descartar
+
+    Para i=225:
+
+        s = 178
+
+        ¿s <= 225? Sí
+
+        sumas_divisores[178] = 92
+
+        ¿92 == 225? No → No son amigos    
