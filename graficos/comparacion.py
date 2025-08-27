@@ -2,32 +2,25 @@ import time
 import math
 import matplotlib.pyplot as plt
 
-def amigos_optimizado(MAX):
+import time
+
+def amigos_optimizado_solo_tiempo(MAX):
     t1 = time.time()
     
-    # Registrar sumas de divisores
     sumas_divisores = [0] * (MAX + 1)
-    
-    # Buscar divisores a partir de los multiplos
     for numero in range(1, MAX + 1):
         for multiplo in range(numero * 2, MAX + 1, numero):
             sumas_divisores[multiplo] += numero
     
-    # Buscar pares de números amigos
-    numeros_amigos = set()
-
-    for numero1 in range(MAX + 1):
+    # Solo recorrer para forzar la búsqueda pero sin guardar resultados
+    for numero1 in range(1, MAX + 1):
         numero2 = sumas_divisores[numero1]
-        
-        # Verificar condiciones para números amigos
-        if numero2 <= MAX and sumas_divisores[numero2] == numero1:
-            amigos = tuple(sorted([numero1, numero2]))
-            if amigos not in numeros_amigos:
-                numeros_amigos.add(amigos)
-            
+        if numero2 <= MAX and numero2 != numero1 and sumas_divisores[numero2] == numero1:
+            pass  # No hacer nada, solo verificar
     
     t2 = time.time()
-    return t2 - t1, numeros_amigos
+    return t2 - t1
+
 
 def amigos_no_optimizado(MAX):
     t1 = time.time()
@@ -49,48 +42,39 @@ def amigos_no_optimizado(MAX):
     t2 = time.time()
     return t2 - t1, numeros_amigos
 
-def generar_mediciones():
-    # Solo los tamaños grandes pedidos
-    tamanios = [50000, 100000, 150000, 200000, 250000]
-    tiempos_optimizado = []
-
-    for tamanio in tamanios:
-        print(f"\nProbando con tamaño: {tamanio}")
-
-        # Medir solo el optimizado
-        tiempo_opt, amigos_opt = amigos_optimizado(tamanio)
-        tiempos_optimizado.append(tiempo_opt)
-
-        print(f"  Optimizado: {len(amigos_opt)} pares, {tiempo_opt:.4f} segundos")
-
-    return tamanios, tiempos_optimizado
+def medir_tiempos(lista_tamanios):
+    tiempos = []
+    for n in lista_tamanios:
+        print(f"Ejecutando para N = {n}")
+        tiempo = amigos_optimizado_solo_tiempo(n)
+        print(f"Tiempo: {tiempo:.4f} segundos")
+        tiempos.append(tiempo)
+    return tiempos
 
 
-def generar_grafico(tamanios, tiempos_optimizado):
-    plt.figure(figsize=(12, 8))
 
-    # Graficar solo el algoritmo optimizado
-    plt.plot(tamanios, tiempos_optimizado, 'o-', linewidth=2, markersize=8,
-             label='Algoritmo Optimizado', color='blue')
+import matplotlib.pyplot as plt
 
-    plt.xlabel('Tamaño máximo (N)', fontsize=12)
-    plt.ylabel('Tiempo de ejecución (segundos)', fontsize=12)
-    plt.title('Tiempos de Ejecución: Algoritmo Optimizado de Números Amigos', fontsize=14)
-    plt.legend(fontsize=12)
-    plt.grid(True, alpha=0.3)
+def graficar_tiempos(tamanios, tiempos):
+    plt.figure(figsize=(10,6))
+    plt.plot(tamanios, tiempos, 'o-', color='blue', label='Algoritmo Optimizado - Solo Tiempo')
+    plt.xlabel('Tamaño máximo (N)')
+    plt.ylabel('Tiempo de ejecución (segundos)')
+    plt.title('Tiempos de ejecución - Algoritmo Optimizado')
     plt.xscale('log')
     plt.yscale('log')
-
-    # Anotar valores exactos en el gráfico
-    for i, t in enumerate(tiempos_optimizado):
-        plt.annotate(f'{t:.2f}s', (tamanios[i], t), textcoords="offset points", xytext=(0, 10), ha='center')
-
+    plt.grid(True, which="both", ls="--", alpha=0.5)
+    
+    for x, y in zip(tamanios, tiempos):
+        plt.annotate(f"{y:.2f}s", (x, y), textcoords="offset points", xytext=(0,5), ha='center')
+    
+    plt.legend()
     plt.tight_layout()
-    plt.savefig('ComparacionOptimizado.png', dpi=300)
-    print("✅ Gráfico guardado como 'ComparacionOptimizado.png'")
+    plt.savefig('tiempos_amigos_optimizado.png', dpi=300)
     plt.show()
-
+    print("Gráfico guardado como 'tiempos_amigos_optimizado.png'")
 
 if __name__ == "__main__":
-    tamanios, tiempos_optimizado = generar_mediciones()
-    generar_grafico(tamanios, tiempos_optimizado)
+    tamanios = [50000, 100000, 150000, 200000, 250000]
+    tiempos = medir_tiempos(tamanios)
+    graficar_tiempos(tamanios, tiempos)

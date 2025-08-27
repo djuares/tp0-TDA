@@ -13,18 +13,12 @@ def amigos_optimizado(MAX):
             sumas_divisores[multiplo] += numero
     
     # Buscar pares de números amigos
-    numeros_amigos = set()
-
-    for numero1 in range(MAX) :
+    for numero1 in range(MAX+1) :
         numero2 = sumas_divisores[numero1]
         
         # Verificar condiciones para números amigos
-        if numero2 <= MAX and sumas_divisores[numero2] == numero1:
-            amigos = tuple(sorted([numero1, numero2]))
-            if amigos not in numeros_amigos:
-                print(numero1,numero2)
-                numeros_amigos.add(amigos)
-            
+        if numero2 <= numero1 and sumas_divisores[numero2] == numero1:
+            print(numero1,numero2)
     
     t2 = time.time()
     print(t2-t1)
