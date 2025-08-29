@@ -8,38 +8,17 @@ def amigos_optimizado_solo_tiempo(MAX):
     t1 = time.time()
     
     sumas_divisores = [0] * (MAX + 1)
-    for numero in range(1, MAX + 1):
-        for multiplo in range(numero * 2, MAX + 1, numero):
+    for numero in range(1, MAX):
+        for multiplo in range(numero * 2, MAX+1, numero):
             sumas_divisores[multiplo] += numero
     
-    for numero1 in range(1, MAX + 1):
+    for numero1 in range(MAX+1):
         numero2 = sumas_divisores[numero1]
-        if numero2 <= MAX and numero2 != numero1 and sumas_divisores[numero2] == numero1:
-            pass  
+        if numero2 <= numero1 and sumas_divisores[numero2] == numero1:
+            print(numero1, numero2)  
     
     t2 = time.time()
     return t2 - t1
-
-
-def amigos_no_optimizado(MAX):
-    t1 = time.time()
-    numeros_amigos = set()
-    
-    for i in range(1, MAX + 1):
-        s = 0
-        for j in range(1, i):
-            if i % j == 0:
-                s += j
-        s2 = 0
-        for k in range(1, s):
-            if s % k == 0:
-                s2 += k
-        if i == s2 and i != s:
-            amigos = tuple(sorted([i, s]))
-            numeros_amigos.add(amigos)
-    
-    t2 = time.time()
-    return t2 - t1, numeros_amigos
 
 def medir_tiempos(lista_tamanios):
     tiempos = []
@@ -50,9 +29,6 @@ def medir_tiempos(lista_tamanios):
         tiempos.append(tiempo)
     return tiempos
 
-
-
-import matplotlib.pyplot as plt
 
 def graficar_tiempos(tamanios, tiempos):
     plt.figure(figsize=(10,6))

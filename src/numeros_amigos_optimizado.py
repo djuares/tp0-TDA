@@ -14,7 +14,7 @@ def amigos_optimizado(MAX):
             sumas_divisores[multiplo] += numero
     
     # Buscar pares de números amigos
-    for numero1 in range(MAX+1) :
+    for numero1 in range(MAX) :
         numero2 = sumas_divisores[numero1]
         
         # Verificar condiciones para números amigos
