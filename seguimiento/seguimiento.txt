@@ -1,3 +1,4 @@
+Seguimiento con los valores 215 a 225.
 Las sumas de divisores propios para cada número son:
 
     i: 215 - suma: 49
